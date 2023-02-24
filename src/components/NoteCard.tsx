@@ -8,10 +8,12 @@ type Note = RouterOutputs['note']['getAll'][0]
 
 export const NoteCard = ({
     note,
-    onDelete
+    onDelete,
+    onEdit
 }:{
     note: Note
     onDelete: () => void
+    onEdit: () => void
 }) => {
     const [isExpanded, setIsExpanded] = useState<boolean>(true)
 
@@ -22,9 +24,9 @@ export const NoteCard = ({
                     className={`collapse-arrow 
                     ${isExpanded ? 'collapse-open' : ''} 
                     collapse`}
-                    onClick={() => setIsExpanded(!isExpanded)}
+                    
                 >
-                    <div className='collapse-title text-xl font-bold'>{note.title}</div>
+                    <div className='collapse-title text-xl font-bold hover:cursor-pointer' onClick={() => setIsExpanded(!isExpanded)}>{note.title}</div>
                     <div className='collapse-content'>
                         <article className='prose lg:prose-xl'>
                             <ReactMarkdown>{note.content}</ReactMarkdown>
@@ -32,8 +34,8 @@ export const NoteCard = ({
                     </div>
                 </div>
             </div>
-            <div className='card-actions mx-2 flex justify-end'>
-                <button className='btn-warning btn-xs btn px-5' onClick={onDelete}>Delete</button>
+            <div className='card-actions mx-2 flex justify-end mb-1'>
+                <button className='btn-warning btn-xs btn px-7 py-3 text-sm place-content-center' onClick={onDelete}>Delete</button>
             </div>
         </div>
     )
