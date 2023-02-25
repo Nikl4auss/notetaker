@@ -67,6 +67,9 @@ const Content: React.FC = () => {
     onSuccess: void refetchNotes()
   })
 
+  const updateNote = api.note.update.useMutation({
+    onSuccess: void refetchNotes()
+  })
   return (
     <div className="mx-5 mt-5 grid grid-cols-4 gap-2">
       <div className="px-2">
@@ -107,6 +110,13 @@ const Content: React.FC = () => {
               <NoteCard 
                 note={note} 
                 onDelete={() => void deleteNote.mutate({id: note.id})}
+                onEdit={({title, content}) => {
+                  void updateNote.mutate({
+                    id: note.id,
+                    title,
+                    content
+                  })
+                }}
               />
             </div>
           ))}
