@@ -6,11 +6,16 @@ import { languages } from '@codemirror/language-data'
 
 export const NoteEditor = ({
     onSave,
+    note
 }: {
     onSave: (note: { title: string, content: string}) => void
+    note?: {
+        title: string,
+        content: string
+    }
 }) => {
-    const [code, setCode] = useState<string>('')
-    const [title, setTitle] = useState<string>('')
+    const [code, setCode] = useState<string>(note?.content ?? '')
+    const [title, setTitle] = useState<string>(note?.title ?? '')
 
     return (
         <div className='card mt-5 border border-gray-200 bg-base-100 shadow-xl'>
