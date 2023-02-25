@@ -21,7 +21,7 @@ export const NoteCard = ({
     const [isExpanded, setIsExpanded] = useState<boolean>(true)
 
     const [openEditModal, setOpenEditModal] = useState<boolean>(false)
-
+    const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false)
     return (
         <>
             <div className='card mt-5 border border-gray-200 bg-base-100 shadow-xl'>
@@ -43,8 +43,15 @@ export const NoteCard = ({
                     <button
                         className='btn-info btn-xs btn px-7 py-3 text-sm place-content-center'
                         onClick={() => setOpenEditModal(true)}
-                    >Edit</button>
-                    <button className='btn-warning btn-xs btn px-7 py-3 text-sm place-content-center' onClick={onDelete}>Delete</button>
+                    >
+                        Edit
+                    </button>
+                    <button 
+                    className='btn-warning btn-xs btn px-7 py-3 text-sm place-content-center' 
+                    onClick={() => setOpenDeleteModal(true)}
+                    >
+                        Delete
+                    </button>
                 </div>
             </div>
             {openEditModal
@@ -60,6 +67,30 @@ export const NoteCard = ({
                                 void setOpenEditModal(false)
                             }} />
                     </Modal>)
+                : null
+            }
+
+            {
+                openDeleteModal
+                ? (
+                    <Modal
+                        isOpen={openDeleteModal}
+                        closeModal={setOpenDeleteModal}
+                        >
+                        <h3 className='font-bold text-xl'>Are you sure you want to delete note '{`${note.title}`}'?</h3>
+                        <div className='modal-action'>
+                            <button 
+                                className='btn-warning btn-xs btn px-7 py-3 text-sm place-content-center' 
+                                onClick={() => {
+                                    void onDelete()
+                                    void setOpenDeleteModal(false)
+                                }}
+                            >
+                                Yes, Delete
+                            </button>
+                        </div>
+                    </Modal>    
+                )
                 : null
             }
         </>
