@@ -3,7 +3,7 @@ import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 
-import { api, RouterOutputs } from "~/utils/api";
+import { api, type RouterOutputs } from "~/utils/api";
 import { Header } from "~/components/Header";
 import { NoteEditor } from "~/components/NoteEditor";
 import { NoteCard } from "~/components/NoteCard";
