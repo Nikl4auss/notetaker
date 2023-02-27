@@ -57,7 +57,7 @@ export const NoteCard = ({
             {openEditModal
                 ? (
                     <Modal
-                        isOpen={openEditModal}
+                        width='full'
                         closeModal={setOpenEditModal}
                     >
                         <NoteEditor
@@ -74,10 +74,10 @@ export const NoteCard = ({
                 openDeleteModal
                 ? (
                     <Modal
-                        isOpen={openDeleteModal}
                         closeModal={setOpenDeleteModal}
                         >
                         <h3 className='font-bold text-xl'>Are you sure you want to delete note '{`${note.title}`}'?</h3>
+                        <p className='text-gray-600 py-4'>You can't reverse this later</p>
                         <div className='modal-action'>
                             <button 
                                 className='btn-warning btn-xs btn px-7 py-3 text-sm place-content-center' 
