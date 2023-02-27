@@ -1,4 +1,3 @@
-import { contextProps } from '@trpc/react-query/shared'
 import { z } from 'zod'
 
 import { createTRPCRouter, protectedProcedure } from '../trpc'
